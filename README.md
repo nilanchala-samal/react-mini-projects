@@ -6,6 +6,7 @@ React Mini Projects is a curated collection of small-scale applications created 
 ### useState
 1. bgChanger
 2. counter
+3. digital-clock
 
 ### useReducer
-3. calculator
+1. calculator
