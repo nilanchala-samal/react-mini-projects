@@ -6,7 +6,7 @@
 
 .container {
   width: 500px;
-  height: 600px;
+  height: 650px;
   margin: 20px auto;
   background-image: linear-gradient(180deg, #13094c, #3b2f80 100%);
   border-radius: 15px;
@@ -47,25 +47,25 @@
   margin-top: 0.75rem;
   display: flex;
   justify-content: center;
-  height: 13rem;
+  height: 9rem;
 }
 
 .weather-temp {
   display: flex;
   justify-content: center;
   color: white;
-  font-size: 4rem;
+  font-size: 3rem;
 }
 
 .weather-location {
   display: flex;
   justify-content: center;
-  color: hsl(0, 0%, 63%);
+  color: hsl(69, 82%, 49%);
   font-size: 3rem;
   margin-top: 0.75rem;
 }
 .data-container {
-  margin-top: 2.5rem;
+  margin-top: 1.5rem;
   color: whitesmoke;
   display: flex;
   justify-content: space-around;
@@ -77,10 +77,25 @@
   gap: 1rem;
 }
 .data {
-  font-size: 1.4rem;
+  font-size: 1.2rem;
+}
+
+.text{
+  color: hsl(69, 82%, 49%);
 }
 
 .icon {
   margin-top: 4px;
-  height: 2.8rem;
+  height: 2.4rem;
+}
+
+.forecast-container{
+  margin-top: 2.7rem;
+  background-color: rgb(56, 18, 151);
+  height: 150px;
+  border: none;
+  outline: none;
+  border-radius: 20px;
+  display: flex;
+  gap: 3px;
 }
