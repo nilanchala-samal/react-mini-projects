@@ -3,6 +3,9 @@
   margin: 0;
   box-sizing: border-box;
 }
+body{
+  background: linear-gradient(135deg, #17132b, #240ca7 100%);
+}
 
 .container {
   width: 500px;
@@ -91,11 +94,12 @@
 
 .forecast-container{
   margin-top: 2.7rem;
-  background-color: rgb(56, 18, 151);
+  background-color: hsl(257, 97%, 25%);
   height: 150px;
   border: none;
   outline: none;
   border-radius: 20px;
-  display: flex;
-  gap: 3px;
+  display: grid;
+  grid-template-columns: repeat(5, 4.5rem);
+  column-gap: 1.7rem;
 }

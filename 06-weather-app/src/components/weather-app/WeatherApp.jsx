@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import './weather-app.css'
 import axios from 'axios'
+// import debounce from 'lodash.debounce'
 
 import search_icon from '../../assets/search.png'
 import clear_icon from '../../assets/clear.png'
@@ -30,6 +31,9 @@ const WeatherApp = () => {
   const [location, setLocation] = useState(null)
   const [wIcon, setWIcon] = useState(cloud_icon)
   const [weatherIconCode, setWeatherIconCode] = useState()
+
+
+  const inputRef = useRef(null)
 
   // -----------------------------  function to get the current location ----------------------------------
   async function getCurrentLocation() {
@@ -202,6 +206,11 @@ const WeatherApp = () => {
     console.log("Forecast Icons", forecastIcon);
   }, [forecastDay, forecastTemperature, forecastIcon]);
 
+  const handleKeyDown = (event) => {
+    if (event.key === 'Enter') {
+      handleClickSearch();
+    }
+  };
 
   function handleClickSearch() {
     setLocation(city);
@@ -211,7 +220,15 @@ const WeatherApp = () => {
   return (
     <div className='container'>
       <div className="top-bar">
-        <input type="text" placeholder='enter the city name' className="cityInput" value={city} onChange={(e) => setCity(e.target.value)} />
+        <input 
+        type="text" 
+        placeholder='enter the city name' 
+        className="cityInput" 
+        value={city} 
+        onChange={(e) => setCity(e.target.value)} 
+        onKeyDown={handleKeyDown}
+        ref={inputRef}
+        />
         <div className="search-icon" onClick={handleClickSearch}>
           <img src={search_icon} alt="" />
         </div>

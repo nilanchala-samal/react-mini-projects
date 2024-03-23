@@ -3,9 +3,8 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    gap: 4px;
-    /* background: #b69595; */
-    margin: 4px 0 4px 4px;
+    gap: 10px;
+    margin: 4px 0 4px 10px;
     border-radius: 10px;
     padding: 0px 8px;
 }
@@ -14,7 +13,6 @@
     height: 4rem;
 }
 .forecast-temperature{
-    color: rgb(180, 177, 177);
     font-size: 1.4rem;
 }
 .forecast-temperature .forecast-high-temp{
