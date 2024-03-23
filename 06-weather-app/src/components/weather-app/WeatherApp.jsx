@@ -150,7 +150,7 @@ const WeatherApp = () => {
             forecastDays.push(daysOfWeek[dayOfWeek].slice(0, 3))
 
             // temperature information
-            let temp = response.data.data[i].temp
+            let temp = Math.floor(response.data.data[i].high_temp) + "/" + Math.floor(response.data.data[i].low_temp)
             forecastTemperatures.push(temp)
 
             // weather icon information 
@@ -177,7 +177,7 @@ const WeatherApp = () => {
               forecastIcons.push(thunderstorm_with_rain)
             } else if (forecastIconCode === 'r04d' || forecastIconCode === 'r04n' || forecastIconCode === 'r05d' || forecastIconCode === 'r05n' || forecastIconCode === 'r06d' || forecastIconCode === 'r06n') {
               forecastIcons.push(shower_rain)
-            } 
+            }
             else if (forecastIconCode === 's04d') {
               forecastIcons.push(mix_snow_rain_day)
             } else if (forecastIconCode === 's04n') {
@@ -219,7 +219,7 @@ const WeatherApp = () => {
       <div className="weather-image">
         <img src={wIcon} alt="" />
       </div>
-      <div className="weather-temp">{temperature}°C</div>
+      <div className="weather-temp">{Math.floor(temperature)}°C</div>
       <div className="weather-location">{location}</div>
       <div className="data-container">
         <div className="element">
@@ -232,18 +232,21 @@ const WeatherApp = () => {
         <div className="element">
           <img src={wind_icon} alt="" className="icon" />
           <div className="data">
-            <div className="wind-rate">{wind} Km/h</div>
+            <div className="wind-rate">{wind} m/s</div>
             <div className="text">Wind Speed</div>
           </div>
         </div>
       </div>
-      <div className='forecast-container'>
-        <Forecast temperature={forecastTemperature[0]} icon={forecastIcon[0]} day="Tomorrow" />
-        <Forecast temperature={forecastTemperature[1]} icon={forecastIcon[1]} day={forecastDay[1]} />
-        <Forecast temperature={forecastTemperature[2]} icon={forecastIcon[2]} day={forecastDay[2]} />
-        <Forecast temperature={forecastTemperature[3]} icon={forecastIcon[3]} day={forecastDay[3]} />
-        <Forecast temperature={forecastTemperature[4]} icon={forecastIcon[4]} day={forecastDay[4]} />
-      </div>
+      {forecastTemperature.length > 0 && forecastIcon.length > 0 && forecastDay.length > 0 && (
+        <div className='forecast-container'>
+          <Forecast temperature={forecastTemperature[0]} icon={forecastIcon[0]} day={forecastDay[0]} />
+          <Forecast temperature={forecastTemperature[1]} icon={forecastIcon[1]} day={forecastDay[1]} />
+          <Forecast temperature={forecastTemperature[2]} icon={forecastIcon[2]} day={forecastDay[2]} />
+          <Forecast temperature={forecastTemperature[3]} icon={forecastIcon[3]} day={forecastDay[3]} />
+          <Forecast temperature={forecastTemperature[4]} icon={forecastIcon[4]} day={forecastDay[4]} />
+        </div>
+      )}
+
     </div>
   )
 }
