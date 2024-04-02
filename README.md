@@ -7,9 +7,13 @@ React Mini Projects is a curated collection of small-scale applications created 
 1. bgChanger
 2. counter
 3. digital-clock
+4. dice-game
 
 ### useEffect
 1. weather-app
+2. quote-generator
+3. foody-zone
+4. firebase-contact-app
 
 ### useReducer
 1. calculator
