@@ -1,9 +1,16 @@
-import React, { cloneElement } from 'react'
+import React from 'react'
 import Modal from './Modal'
-import { Formik, Form, Field } from 'formik'
+import { Formik, Form, Field, ErrorMessage } from 'formik'
 import { addDoc, collection, doc, updateDoc } from 'firebase/firestore'
 import { db } from '../config/firebase'
 import { toast } from 'react-toastify'
+import * as Yup from 'yup'
+
+const contactSchemaValidation = Yup.object().shape({
+    name: Yup.string().required("Name is required"),
+    email: Yup.string().email("Invalid Email").required("Email is required"),
+})
+
 
 const AddAndUpdateContact = ({ isOpen, onClose, isUpdate, contact }) => {
 
@@ -31,6 +38,7 @@ const AddAndUpdateContact = ({ isOpen, onClose, isUpdate, contact }) => {
         <div className='rounded-lg'>
             <Modal isOpen={isOpen} onClose={onClose}>
                 <Formik
+                    validationSchema={contactSchemaValidation}
                     initialValues={isUpdate
                         ? {
                             name: contact.name,
@@ -41,7 +49,7 @@ const AddAndUpdateContact = ({ isOpen, onClose, isUpdate, contact }) => {
                             email: ""
                         }}
                     onSubmit={(values) => {
-                        onClose();
+                        onClose()
                         { isUpdate ? updateContact(values, contact.id) : addContact(values) }
                     }}
                 >
@@ -49,10 +57,16 @@ const AddAndUpdateContact = ({ isOpen, onClose, isUpdate, contact }) => {
                         <div className='flex flex-col gap-1'>
                             <label htmlFor="name">Name</label>
                             <Field name="name" className="border h-10 px-2" />
+                            <div className='text-red-500 text-xs'>
+                                <ErrorMessage name='name' />
+                            </div>
                         </div>
                         <div className='flex flex-col gap-1'>
                             <label htmlFor="email">Email</label>
                             <Field type="email" name="email" className="border h-10 px-2" />
+                            <div className='text-red-500 text-xs'>
+                                <ErrorMessage name='email' />
+                            </div>
                         </div>
                         <button type='submit' className='bg-amber-500 px-3 py-1.5 border rounded-md self-end hover:bg-amber-600'>
                             {isUpdate ? "Update" : "Add"} contact
